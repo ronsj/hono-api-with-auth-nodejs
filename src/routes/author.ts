@@ -70,7 +70,20 @@ app.put('/:id', sValidator('json', updateAuthorSchema), (c) => {
     author.birthday = data.birthday
   }
 
-  return c.json(author, 201)
+  return c.json(author, 200)
+})
+
+app.delete('/:id', (c) => {
+  const id = c.req.param('id')
+  const index = authors.findIndex((a) => a.id === id)
+
+  if (index === -1) {
+    return c.json({ error: 'Author not found ' }, 404)
+  }
+
+  authors.splice(index, 1)
+
+  return c.body(null, 204)
 })
 
 export default app
