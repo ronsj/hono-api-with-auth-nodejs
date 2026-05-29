@@ -8,6 +8,7 @@ export const envSchema = z.object({
   DB_NAME: z.string().min(1),
   DB_HOST: z.string().min(1),
   DB_PORT: z.coerce.number().int().positive(),
+  JWT_SECRET: z.string().min(1),
 })
 
 const parsed = envSchema.safeParse(process.env)
