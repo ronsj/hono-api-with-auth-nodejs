@@ -1,4 +1,4 @@
-import { randomBytes, scrypt, timingSafeEqual } from 'crypto'
+import { createHash, randomBytes, scrypt, timingSafeEqual } from 'node:crypto'
 
 /**
  * Hash a password using scrypt. The returned string will be in the format "salt:hash".
@@ -34,4 +34,13 @@ export async function verifyPassword(password: string, storedHash: string) {
 
   // Use timingSafeEqual to prevent timing attacks
   return timingSafeEqual(stored, derived)
+}
+
+// Generate a new API key. The raw key is returned for the user to copy, while the hash is what gets stored in the database.
+export function generateApiKey() {
+  const raw = randomBytes(32).toString('base64')
+  const hash = createHash('sha256').update(raw).digest('hex')
+  const prefix = raw.slice(0, 8) // Use the first 8 characters of the raw key as a prefix for easier identification
+
+  return { raw, hash, prefix }
 }
