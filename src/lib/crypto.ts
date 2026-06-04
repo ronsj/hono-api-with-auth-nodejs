@@ -36,11 +36,20 @@ export async function verifyPassword(password: string, storedHash: string) {
   return timingSafeEqual(stored, derived)
 }
 
-// Generate a new API key. The raw key is returned for the user to copy, while the hash is what gets stored in the database.
+/**
+ * Generate a new API key. The raw key is returned for the user to copy, while the hash is what gets stored in the database.
+ */
 export function generateApiKey() {
   const raw = randomBytes(32).toString('base64')
-  const hash = createHash('sha256').update(raw).digest('hex')
+  const hash = hashApiKey(raw)
   const prefix = raw.slice(0, 8) // Use the first 8 characters of the raw key as a prefix for easier identification
 
   return { raw, hash, prefix }
+}
+
+/**
+ * Hash an API key using SHA-256. This is what gets stored in the database for comparison during authentication.
+ */
+export function hashApiKey(key: string) {
+  return createHash('sha256').update(key).digest('hex')
 }
