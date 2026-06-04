@@ -1,0 +1,599 @@
+{
+  "meta": {
+    "version": "1.1.0",
+    "exportedAt": "2026-06-04T04:46:18.938Z",
+    "exportedUsing": "Requestly API Client"
+  },
+  "records": [
+    {
+      "id": "13a43637-8535-4a3d-8092-298386ec78d7",
+      "name": "Authors",
+      "description": "",
+      "type": "collection",
+      "parentId": "c139a77e-b3ec-49f3-9538-e057ffc746e7",
+      "deleted": false,
+      "data": {
+        "auth": {
+          "type": "inherit"
+        },
+        "variables": {
+          "LAST_ID": {
+            "id": "8d6d7339-9cd2-49c2-bb89-c1e88564c302",
+            "type": "string",
+            "syncValue": "",
+            "localValue": "",
+            "isPersisted": true,
+            "rank": "hmpqiye36",
+            "isEnabled": true,
+            "createdAt": "2026-05-29T06:14:15.616Z",
+            "updatedAt": "2026-05-29T06:14:15.616Z"
+          }
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "f8d508b9-a2c7-4693-9a19-64bec90f80d7",
+      "name": "Auth",
+      "description": "",
+      "type": "collection",
+      "parentId": "c139a77e-b3ec-49f3-9538-e057ffc746e7",
+      "deleted": false,
+      "data": {
+        "auth": {
+          "type": "inherit"
+        },
+        "variables": {
+          "LAST_EMAIL": {
+            "id": "0126a07c-eb2f-4ef8-a28d-d41d95abfe80",
+            "type": "string",
+            "syncValue": "",
+            "localValue": "",
+            "isPersisted": true,
+            "rank": "hmprhk3ax",
+            "isEnabled": true,
+            "createdAt": "2026-05-29T22:22:52.141Z",
+            "updatedAt": "2026-05-29T22:22:52.141Z"
+          }
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "e82c983e-6507-43f4-beaf-2f6ab0cbab20",
+      "name": "API Keys",
+      "description": "",
+      "type": "collection",
+      "parentId": "c139a77e-b3ec-49f3-9538-e057ffc746e7",
+      "deleted": false,
+      "data": {
+        "auth": {
+          "type": "bearer_token",
+          "token": "{{JWT}}"
+        },
+        "variables": {
+          "LAST_ID": {
+            "id": "c4d33682-7581-4ac9-bc6a-bfa9f1baed96",
+            "type": "string",
+            "syncValue": "",
+            "localValue": "",
+            "isPersisted": true,
+            "rank": "hmpwa7o0o",
+            "isEnabled": true,
+            "createdAt": "2026-06-02T06:38:58.835Z",
+            "updatedAt": "2026-06-02T06:38:58.835Z"
+          }
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "c139a77e-b3ec-49f3-9538-e057ffc746e7",
+      "name": "Library API",
+      "description": "",
+      "type": "collection",
+      "parentId": null,
+      "deleted": false,
+      "data": {
+        "auth": {
+          "type": "api_key",
+          "key": "X-API-KEY",
+          "value": "{{API_KEY}}",
+          "placement": "header"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "c009b5cc-3c90-4067-a6fb-7e8fe3c91ace",
+      "name": "Create",
+      "type": "api",
+      "parentId": "e82c983e-6507-43f4-beaf-2f6ab0cbab20",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/api-keys",
+          "method": "POST",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "raw",
+            "raw": "{\n  \"name\": \"{{$randomCompanyName}}\"\n}",
+            "rawContentType": "application/json"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        },
+        "scripts": {
+          "preRequest": "// **********************************************\n// Learn more about scripts and snippets: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\n",
+          "postResponse": "// **********************************************\n// Use JavaScript to visualize responses: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\ntry {\n  rq.collectionVariables.set(\"LAST_ID\", rq.response.json().id)\n  rq.environment.set('API_KEY', rq.response.json().key)\n} catch {}"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "529ffa25-4dbb-4263-82a4-93c4957b7ff2",
+      "name": "Delete",
+      "type": "api",
+      "parentId": "e82c983e-6507-43f4-beaf-2f6ab0cbab20",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/api-keys/:id",
+          "method": "DELETE",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "key": "id",
+              "value": "{{LAST_ID}}",
+              "dataType": "string"
+            }
+          ],
+          "body": {
+            "contentType": "raw",
+            "raw": "{\n  \"name\": \"{{$randomCompanyName}}\"\n}",
+            "rawContentType": "application/json"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        },
+        "scripts": {
+          "preRequest": "// **********************************************\n// Learn more about scripts and snippets: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\n",
+          "postResponse": "// **********************************************\n// Use JavaScript to visualize responses: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\n"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "249611c3-7e28-4714-9a6a-1bd4c85aa310",
+      "name": "List",
+      "type": "api",
+      "parentId": "e82c983e-6507-43f4-beaf-2f6ab0cbab20",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/api-keys",
+          "method": "GET",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "none"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "bearer_token",
+          "token": "{{JWT}}"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "5e83db3a-4066-4ecc-aec3-c5b173070ced",
+      "name": "Login",
+      "type": "api",
+      "parentId": "f8d508b9-a2c7-4693-9a19-64bec90f80d7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/auth/login",
+          "method": "POST",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "raw",
+            "raw": "{\n  \"email\": \"{{LAST_EMAIL}}\",\n  \"password\": \"password\"\n}",
+            "rawContentType": "application/json"
+          },
+          "contentType": "none"
+        },
+        "scripts": {
+          "postResponse": "// **********************************************\n// Use JavaScript to visualize responses: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\ntry {\n  rq.environment.set('JWT', rq.response.json().token)\n} catch {}"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "2587ceac-06d7-4477-a68d-c516f5b9db62",
+      "name": "Register",
+      "type": "api",
+      "parentId": "f8d508b9-a2c7-4693-9a19-64bec90f80d7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/auth/register",
+          "method": "POST",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "raw",
+            "raw": "{\n  \"email\": \"{{$randomEmail}}\",\n  \"password\": \"password\"\n}",
+            "rawContentType": "application/json"
+          },
+          "contentType": "none"
+        },
+        "scripts": {
+          "preRequest": "// **********************************************\n// Learn more about scripts and snippets: https://docs.requestly.com/general/api-client/scripts\n// **********************************************",
+          "postResponse": "// **********************************************\n// Use JavaScript to visualize responses: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\ntry {\n  rq.collectionVariables.set(\"LAST_EMAIL\", rq.response.json().email)\n} catch {}"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "b5136fd7-62e8-404c-aeae-f32f918ddbe7",
+      "name": "Create",
+      "type": "api",
+      "parentId": "13a43637-8535-4a3d-8092-298386ec78d7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/authors",
+          "method": "POST",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "raw",
+            "raw": "{\n  \"name\": \"{{$randomFullName}}\",\n}",
+            "rawContentType": "application/json"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        },
+        "scripts": {
+          "preRequest": "// **********************************************\n// Learn more about scripts and snippets: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\n",
+          "postResponse": "// **********************************************\n// Use JavaScript to visualize responses: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\ntry {\n  rq.collectionVariables.set(\"LAST_ID\", rq.response.json().id)\n} catch {}"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "b5ef50cf-395c-4cde-aa85-c0b3c119eb45",
+      "name": "Delete",
+      "type": "api",
+      "parentId": "13a43637-8535-4a3d-8092-298386ec78d7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/authors/:id",
+          "method": "DELETE",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "key": "id",
+              "value": "{{LAST_ID}}",
+              "dataType": "string"
+            }
+          ],
+          "body": {
+            "contentType": "none"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "74eed5e2-e1f5-4063-8b08-f0fbaf205de2",
+      "name": "Get",
+      "type": "api",
+      "parentId": "13a43637-8535-4a3d-8092-298386ec78d7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/authors/:id",
+          "method": "GET",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "key": "id",
+              "value": "{{LAST_ID}}",
+              "dataType": "string"
+            }
+          ],
+          "body": {
+            "contentType": "none"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "49997924-646c-40cf-81d4-8404fbb61fea",
+      "name": "List",
+      "type": "api",
+      "parentId": "13a43637-8535-4a3d-8092-298386ec78d7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/authors",
+          "method": "GET",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "none"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "719400a4-4ddc-427d-87cf-a4c4e1359b4f",
+      "name": "Update",
+      "type": "api",
+      "parentId": "13a43637-8535-4a3d-8092-298386ec78d7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/authors/:id",
+          "method": "PUT",
+          "headers": [],
+          "queryParams": [
+            {
+              "id": 1780035324237,
+              "key": "",
+              "value": "",
+              "isEnabled": true,
+              "description": ""
+            }
+          ],
+          "pathVariables": [
+            {
+              "key": "id",
+              "value": "{{LAST_ID}}",
+              "dataType": "string"
+            }
+          ],
+          "body": {
+            "contentType": "raw",
+            "raw": "{\n  \"name\": \"(New) {{$randomFullName}}\"\n}",
+            "rawContentType": "application/json"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "9d977647-bc84-4e6a-bebe-d8d17ca694c7",
+      "name": "Books",
+      "description": "",
+      "type": "collection",
+      "parentId": "c139a77e-b3ec-49f3-9538-e057ffc746e7",
+      "deleted": false,
+      "data": {
+        "auth": {
+          "type": "inherit"
+        },
+        "variables": {
+          "LAST_ID": {
+            "id": "6e76dce2-8c64-41e9-be2f-e093331a2baa",
+            "type": "string",
+            "syncValue": "",
+            "localValue": "",
+            "isPersisted": true,
+            "rank": "hmpyzsvi5",
+            "isEnabled": true,
+            "createdAt": "2026-06-04T04:33:11.406Z",
+            "updatedAt": "2026-06-04T04:33:11.406Z"
+          }
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "3758f36d-7d54-4fe2-b0d9-ad3cdb273bdb",
+      "name": "List",
+      "type": "api",
+      "parentId": "9d977647-bc84-4e6a-bebe-d8d17ca694c7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/books",
+          "method": "GET",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "none"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "1392d214-cb59-4d27-ae60-0acf7dc92428",
+      "name": "Get",
+      "type": "api",
+      "parentId": "9d977647-bc84-4e6a-bebe-d8d17ca694c7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/books/:id",
+          "method": "GET",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "key": "id",
+              "value": "{{LAST_ID}}",
+              "dataType": "string"
+            }
+          ],
+          "body": {
+            "contentType": "none"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "e9c6dbf6-6053-457a-a1fd-a20979898dfb",
+      "name": "Create",
+      "type": "api",
+      "parentId": "9d977647-bc84-4e6a-bebe-d8d17ca694c7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/books",
+          "method": "POST",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [],
+          "body": {
+            "contentType": "raw",
+            "rawContentType": "application/json",
+            "raw": "{\n  \"title\": \"{{$randomLoremWord}}\",\n  \"description\": \"{{$randomLoremWords}}\",\n  \"publishDate\": \"{{$randomDatePast}}\",\n  \"pageCount\": {{$randomInt}},\n  \"authorId\": \"9588efbd-ca9c-433a-972f-b86328e49fc1\"\n}"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        },
+        "scripts": {
+          "preRequest": "// **********************************************\n// Learn more about scripts and snippets: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\n",
+          "postResponse": "// **********************************************\n// Use JavaScript to visualize responses: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\ntry {\n  rq.collectionVariables.set(\"LAST_ID\", rq.response.json().id)\n} catch {}"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "1bf7f6b6-bb0e-4c3a-a192-a0b48be3b9ca",
+      "name": "Update",
+      "type": "api",
+      "parentId": "9d977647-bc84-4e6a-bebe-d8d17ca694c7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/books/:id",
+          "method": "PUT",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "key": "id",
+              "value": "{{LAST_ID}}",
+              "dataType": "string"
+            }
+          ],
+          "body": {
+            "contentType": "raw",
+            "raw": "{\n  \"title\": \"(New) {{$randomLoremWord}}\",\n  \"description\": \"{{$randomLoremWords}}\",\n  \"publishDate\": \"{{$randomDatePast}}\",\n  \"pageCount\": {{$randomInt}},\n  \"authorId\": \"9588efbd-ca9c-433a-972f-b86328e49fc1\"\n}",
+            "rawContentType": "application/json"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        },
+        "scripts": {
+          "preRequest": "// **********************************************\n// Learn more about scripts and snippets: https://docs.requestly.com/general/api-client/scripts\n// **********************************************\n"
+        }
+      },
+      "rank": null
+    },
+    {
+      "id": "820e9b4f-9501-4be2-a494-8305c6906a3e",
+      "name": "Del",
+      "type": "api",
+      "parentId": "9d977647-bc84-4e6a-bebe-d8d17ca694c7",
+      "deleted": false,
+      "data": {
+        "type": "http",
+        "request": {
+          "url": "{{BASE_URL}}/books/:id",
+          "method": "DELETE",
+          "headers": [],
+          "queryParams": [],
+          "pathVariables": [
+            {
+              "key": "id",
+              "value": "{{LAST_ID}}",
+              "dataType": "string"
+            }
+          ],
+          "body": {
+            "contentType": "none"
+          },
+          "contentType": "none"
+        },
+        "auth": {
+          "type": "inherit"
+        }
+      },
+      "rank": null
+    }
+  ],
+  "environments": [],
+  "packages": []
+}
